@@ -1,0 +1,4 @@
+React-Tab-Component
+=========================
+
+MIT
