@@ -2,7 +2,6 @@
 import Tab from './Tab';
 import Context from '../tab-context';
 import { mergeClassName } from '../utils';
-import PropTypes from 'prop-types';
 
 export default class Tabs extends Component {
     constructor(props) {

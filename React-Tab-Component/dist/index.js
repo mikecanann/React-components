@@ -491,10 +491,11 @@ var Tab = function (_Component) {
                     var onSelectedTabIndexChange = _ref.onSelectedTabIndexChange;
                     return _react2.default.createElement(
                         'li',
-                        { className: isSelected ? "isSelected" : "" },
+                        { className: 'la-tabs-nav-item ' + (isSelected ? "isSelected" : "") },
                         _react2.default.createElement(
                             'a',
-                            { onClick: function onClick() {
+                            { className: 'la-tabs-nav-link',
+                                onClick: function onClick() {
                                     return onSelectedTabIndexChange(tabIndex);
                                 } },
                             tabHeader
@@ -626,7 +627,9 @@ var Tabs = function (_Component) {
     _createClass(Tabs, [{
         key: 'onSelectedTabIndexChange',
         value: function onSelectedTabIndexChange(tabIndex) {
-            this.setState({ selectedTabIndex: tabIndex });
+            if (this.state.selectedTabIndex != tabIndex) {
+                this.setState({ selectedTabIndex: tabIndex });
+            }
         }
     }, {
         key: 'renderTabHeaderItems',

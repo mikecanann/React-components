@@ -1,5 +1,23 @@
 .la-tabs-nav {
   list-style-type: none;
-  float: left; }
+  overflow: hidden;
+  border-bottom: 1px solid #dee2e6;
+  margin: 0;
+  padding: 8px 0; }
+  .la-tabs-nav-item {
+    display: inline;
+    padding: 7px 10px;
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #5081b3; }
+    .la-tabs-nav-item:hover {
+      cursor: pointer; }
+    .la-tabs-nav-item.isSelected {
+      color: #495057;
+      border-color: #dee2e6 #dee2e6 #fff; }
+
+.la-tabs-selected-tab-content {
+  border: 1px solid transparent; }
 
 /*# sourceMappingURL=style.css.map*/
