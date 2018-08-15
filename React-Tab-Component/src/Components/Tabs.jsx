@@ -1,5 +1,4 @@
 ﻿import React, { Component } from 'react';
-import Tab from './Tab';
 import Context from '../tab-context';
 import { mergeClassName } from '../utils';
 
@@ -7,54 +6,32 @@ export default class Tabs extends Component {
     constructor(props) {
         super(props);
 
-        this.tabComponents = props.children;
-        let selectedTabIndex = 0;
-        this.tabComponents.some((tab, index) => {
+        let selectedTab = props.children[0];
+
+        props.children.some(tab => {
             if (tab.props.isSelected) {
-                selectedTabIndex = index;
+                selectedTab = tab;
                 return true;
             }
         });
-        this.state = {
-            selectedTabIndex: selectedTabIndex
-        };
-
+        this.state = {selectedTab};
         this.onSelectedTabIndexChange = this.onSelectedTabIndexChange.bind(this);
     }
 
-    onSelectedTabIndexChange(tabIndex) {
-        if(this.state.selectedTabIndex != tabIndex){
-            this.setState({ selectedTabIndex: tabIndex });
+    onSelectedTabIndexChange(tab) {
+        if(this.state.selectedTab != tab){
+            this.setState({ selectedTab: tab });
         }
-    }
-
-    renderTabHeaderItems() {
-        const { selectedTabIndex } = this.state;
-
-        return this.tabComponents.map((item, index) =>
-            <Tab key={index}
-                tabIndex={index}
-                tabHeader={item.props.tabHeader}
-                isSelected={selectedTabIndex === index}>
-            </Tab>
-        );
-    }
-
-    renderSelectedTabContent() {
-        const { selectedTabIndex } = this.state;
-        var selectedTab = this.tabComponents[selectedTabIndex];
-
-        return selectedTab && selectedTab.props.children;
     }
 
     render() {
         return (<Context.Provider value={({ ...this.state, onSelectedTabIndexChange: this.onSelectedTabIndexChange })}>
             <div className={mergeClassName(this.props, 'la-tabs')}>
                 <ul className="la-tabs-nav">
-                    {this.renderTabHeaderItems()}
+                    {this.props.children}
                 </ul>
                 <div className="la-tabs-selected-tab-content">
-                    {this.renderSelectedTabContent()}
+                    {this.state.selectedTab.children}
                 </div>
             </div>
         </Context.Provider>);

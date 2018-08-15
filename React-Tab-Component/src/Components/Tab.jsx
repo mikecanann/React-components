@@ -9,7 +9,7 @@ export default class Tab extends Component {
                 ({ onSelectedTabIndexChange }) =>
                     <li className={`la-tabs-nav-item ${isSelected ? "isSelected" : ""}`}>
                         <a className={`la-tabs-nav-link`} 
-                            onClick={() => onSelectedTabIndexChange(tabIndex)}>{tabHeader}</a>
+                            onClick={() => onSelectedTabIndexChange(this)}>{tabHeader}</a>
                     </li>
             }</Context.Consumer>);
     }
