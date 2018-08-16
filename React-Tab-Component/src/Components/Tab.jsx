@@ -3,13 +3,13 @@ import Context from '../tab-context';
 
 export default class Tab extends Component {
     render() {
-        const { tabIndex, tabHeader, isSelected } = this.props;
+        const { tabIndex, tabHeader } = this.props;
         return (
             <Context.Consumer>{
-                ({ onSelectedTabIndexChange }) =>
-                    <li className={`la-tabs-nav-item ${isSelected ? "isSelected" : ""}`}>
-                        <a className={`la-tabs-nav-link`} 
-                            onClick={() => onSelectedTabIndexChange(this)}>{tabHeader}</a>
+                ({ onSelectedTabIndexChange, selectedTabIndex }) =>
+                    <li key={tabIndex} className={`la-tabs-nav-item ${selectedTabIndex === tabIndex ? "isSelected" : ""}`}>
+                        <a className={`la-tabs-nav-link`}
+                            onClick={() => onSelectedTabIndexChange(tabIndex)}>{tabHeader}</a>
                     </li>
             }</Context.Consumer>);
     }

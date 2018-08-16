@@ -6,32 +6,34 @@ export default class Tabs extends Component {
     constructor(props) {
         super(props);
 
-        let selectedTab = props.children[0];
-
-        props.children.some(tab => {
+        let selectedTabIndex = 0;
+        props.children.some((tab, index) => {
             if (tab.props.isSelected) {
-                selectedTab = tab;
+                selectedTabIndex = index;
                 return true;
             }
         });
-        this.state = {selectedTab};
+
+        this.state = { selectedTabIndex: selectedTabIndex };
         this.onSelectedTabIndexChange = this.onSelectedTabIndexChange.bind(this);
     }
 
-    onSelectedTabIndexChange(tab) {
-        if(this.state.selectedTab != tab){
-            this.setState({ selectedTab: tab });
+    onSelectedTabIndexChange(tabIndex) {
+        if (this.state.selectedTabIndex != tabIndex) {
+            this.setState({ selectedTabIndex: tabIndex });
         }
     }
 
     render() {
-        return (<Context.Provider value={({ ...this.state, onSelectedTabIndexChange: this.onSelectedTabIndexChange })}>
+        const { selectedTabIndex } = this.state;
+        return (<Context.Provider value={({ selectedTabIndex: selectedTabIndex, onSelectedTabIndexChange: this.onSelectedTabIndexChange })}>
             <div className={mergeClassName(this.props, 'la-tabs')}>
                 <ul className="la-tabs-nav">
-                    {this.props.children}
+                    {this.props.children.map((tab, index) =>
+                        React.cloneElement(tab, { tabIndex: index, key: index }))}
                 </ul>
                 <div className="la-tabs-selected-tab-content">
-                    {this.state.selectedTab.children}
+                    {this.props.children[selectedTabIndex].props.children}
                 </div>
             </div>
         </Context.Provider>);
