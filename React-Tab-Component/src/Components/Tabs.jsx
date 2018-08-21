@@ -1,21 +1,27 @@
 ﻿import React, { Component } from 'react';
 import Context from '../tab-context';
-import { mergeClassName } from '../utils';
+import { mergeClassName, getSelectedTabIndex } from '../utils';
 
 export default class Tabs extends Component {
     constructor(props) {
         super(props);
 
-        let selectedTabIndex = 0;
-        props.children.some((tab, index) => {
-            if (tab.props.isSelected) {
-                selectedTabIndex = index;
-                return true;
-            }
-        });
-
-        this.state = { selectedTabIndex: selectedTabIndex };
+        this.state = { 
+            selectedTabIndex: getSelectedTabIndex(props.children),
+            tabs: props.children 
+        };
         this.onSelectedTabIndexChange = this.onSelectedTabIndexChange.bind(this);
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if(props.children !== state.tabs){
+            return {
+                selectedTabIndex: getSelectedTabIndex(props.children),
+                tabs: props.children 
+            }
+        }
+
+        return null;
     }
 
     onSelectedTabIndexChange(tabIndex) {

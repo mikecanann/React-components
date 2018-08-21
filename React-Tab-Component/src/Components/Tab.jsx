@@ -1,4 +1,5 @@
-﻿import React, { Component } from 'react';
+﻿import React, { Component } from 'react'; 
+import PropTypes from 'prop-types';
 import Context from '../tab-context';
 
 export default class Tab extends Component {
@@ -14,3 +15,13 @@ export default class Tab extends Component {
             }</Context.Consumer>);
     }
 };
+
+Tab.defaultProps = {
+    tabHeader: "",
+    isSelected: true
+}
+
+Tab.propTypes = {
+    tabHeader: PropTypes.string,
+    isSelected: PropTypes.bool
+}

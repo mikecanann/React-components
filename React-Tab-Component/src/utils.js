@@ -5,3 +5,15 @@ export const mergeClassName = (props, ...classNames) => {
 
     return classNames.join(' ');
 };
+
+export const getSelectedTabIndex = (tabs) => {
+    let selectedTabIndex = 0;
+    tabs.some((tab, index) => {
+        if (tab.props.isSelected) {
+            selectedTabIndex = index;
+            return true;
+        }
+    });
+
+    return selectedTabIndex;
+};
