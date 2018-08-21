@@ -6,18 +6,18 @@ export default class Tabs extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { 
+        this.state = {
             selectedTabIndex: getSelectedTabIndex(props.children),
-            tabs: props.children 
+            tabs: props.children
         };
         this.onSelectedTabIndexChange = this.onSelectedTabIndexChange.bind(this);
     }
 
     static getDerivedStateFromProps(props, state) {
-        if(props.children !== state.tabs){
+        if (props.children !== state.tabs) {
             return {
                 selectedTabIndex: getSelectedTabIndex(props.children),
-                tabs: props.children 
+                tabs: props.children
             }
         }
 

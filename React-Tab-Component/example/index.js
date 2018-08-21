@@ -4,16 +4,14 @@ import ReactDOM from 'react-dom'
 import { LaTabs, LaTab } from '../src';
 
 export default class App extends Component {
-
     constructor(props) {
         super(props);
-
-        this.state = { isSelected: false};
+        this.state = { isSelected: false };
     }
 
     onChangeDefaultSelectedTabClick() {
-        this.setState( (prevState, _) => {
-          return { isSelected:  !prevState.isSelected };
+        this.setState((prevState, _) => {
+            return { isSelected: !prevState.isSelected };
         });
     }
 
