@@ -9,7 +9,7 @@ export default class App extends Component {
         this.state = { isSelected: false };
     }
 
-    onChangeDefaultSelectedTabClick() {
+    onChangeTabSelectedByDefaultClick() {
         this.setState((prevState, _) => {
             return { isSelected: !prevState.isSelected };
         });
@@ -24,7 +24,7 @@ export default class App extends Component {
                     <LaTab tabHeader="head3" isSelected={!this.state.isSelected}> Content Tab3 </LaTab>
                 </LaTabs>
                 <hr></hr>
-                <button onClick={() => this.onChangeDefaultSelectedTabClick()}>Change default selected tab</button >
+                <button onClick={() => this.onChangeTabSelectedByDefaultClick()}>Change tab selected by default</button >
             </div>
         );
     }

@@ -8,7 +8,7 @@ export default class Tab extends Component {
         return (
             <Context.Consumer>{
                 ({ onSelectedTabIndexChange, selectedTabIndex }) =>
-                    <li key={tabIndex} className={`la-tabs-nav-item ${selectedTabIndex === tabIndex ? "isSelected" : ""}`}>
+                    <li key={tabIndex} className={`la-tabs-nav-list-item ${selectedTabIndex === tabIndex ? "isSelected" : ""}`}>
                         <a className={`la-tabs-nav-link`}
                             onClick={() => onSelectedTabIndexChange(tabIndex)}>{tabHeader}</a>
                     </li>

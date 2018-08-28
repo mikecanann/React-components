@@ -34,10 +34,13 @@ export default class Tabs extends Component {
         const { selectedTabIndex } = this.state;
         return (<Context.Provider value={({ selectedTabIndex: selectedTabIndex, onSelectedTabIndexChange: this.onSelectedTabIndexChange })}>
             <div className={mergeClassName(this.props, 'la-tabs')}>
-                <ul className="la-tabs-nav">
-                    {this.props.children.map((tab, index) =>
-                        React.cloneElement(tab, { tabIndex: index, key: index }))}
-                </ul>
+                <div className="la-tabs-nav">
+                    <ul className="la-tabs-nav-list">
+                        {this.props.children.map((tab, index) =>
+                            React.cloneElement(tab, { tabIndex: index, key: index }))}
+                    </ul>
+                </div>
+             
                 <div className="la-tabs-selected-tab-content">
                     {this.props.children[selectedTabIndex].props.children}
                 </div>
