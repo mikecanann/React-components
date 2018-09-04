@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Context from '../tab-context';
+import Context from '../tab-panel-context';
 
 export default class Tab extends Component {
     render() {

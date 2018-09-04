@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import Tab from './Tab';
-import Context from '../tab-context';
+import Context from '../tab-panel-context';
 import { mergeClassName } from '../utils';
 
 export default class Tabs extends Component {
@@ -23,7 +23,7 @@ export default class Tabs extends Component {
         return this.props.children[0].props.tabIndex || 0;
     }
 
-    getSelectedTabContent() {
+    renderSelectedTabContent() {
         const { selectedTabIndex } = this.state;
         const tab = this.props.children.find((tab, index) => (tab.props.tabIndex || index) === selectedTabIndex);
 
@@ -49,7 +49,7 @@ export default class Tabs extends Component {
                     </ul>
                 </div>
                 <div className="la-tabs-selected-tab-content">
-                    {this.getSelectedTabContent()}
+                    {this.renderSelectedTabContent()}
                 </div>
             </div>
         </Context.Provider>);
